@@ -1,0 +1,52 @@
+{% extends 'bootstrap/base.html' %}
+
+{% if title %}
+    <title>{{title}}</title>
+{% else %}
+<title>Базовый шаблон</title>
+{% endif %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/index">
+            <img src="{{ url_for('static', filename='images/users.png') }}" width="30" height="30" alt="">
+        </a>
+        <a class="navbar-brand" href="/userlist">Пользователи</a>
+        <a class="navbar-brand" href="/userpage">Профиль</a>
+        <a class="navbar-brand" href="https://bootstrap-4.ru/docs/4.0/components/navbar/">Справка</a>
+        <a class="navbar-brand" href="/login">Авторизация</a>
+        <a class="navbar-brand" href="/registration">Регистрация</a>
+
+    </nav>
+    <hr>
+
+{% endblock %}
+
+{% block content %}
+    {% block mess %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% if mss == 'alert-warning' %}
+                    <div class="alert {{ mss }}" role="alert">
+                {% else %}
+                    <div class="alert alert-success" role="alert">
+                {% endif %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
+
+    <div class="container">
+
+
+        {# содержимое приложения которое должно быть предоставлено в блоке app_content #}
+        {% block app_content %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

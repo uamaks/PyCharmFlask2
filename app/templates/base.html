@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>Базовый шаблон</title>
+    {% endif %}
+</head>
+<body>
+    <div>Главное меню: <a href="/index">Home</a></div>
+    <hr>
+    {% block content %}
+
+    {% endblock %}
+
+
+</body>
+</html>
